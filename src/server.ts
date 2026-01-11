@@ -1,6 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-const pool = require('./infrastructure/db');
+import express from "express";
+import cors from "cors";
+import pool from './infrastructure/db';
 require('dotenv').config();
 
 const app = express();
@@ -12,7 +12,7 @@ app.get('/', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM test_auth')
         res.json(result.rows);
-    } catch (err) {
+    } catch (err: any) {
         console.error(err.message);
         res.status(500).send('Server error');
     }
